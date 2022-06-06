@@ -33,7 +33,6 @@ class Autoloader
      * Autoloader for classes, controllers and models.
      *
      * @throws RuntimeException Standard exception if the class is not found.
-     * @return void
      */
     public function init(): void
     {

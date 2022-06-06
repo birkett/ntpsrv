@@ -22,7 +22,7 @@ abstract class AbstractCommand implements ConsoleCommand
      * @param string $command
      * @param string[] $arguments
      */
-    public function __construct(string $command, array $arguments)
+    public function __construct(string $command, array $arguments = [])
     {
         $this->command = $command;
         $this->arguments = $arguments;
@@ -44,7 +44,7 @@ abstract class AbstractCommand implements ConsoleCommand
         $output = [];
         $arguments = $this->parseArguments();
 
-        exec($this->command . $arguments, $output);
+        exec($this->command . ' ' . $arguments, $output);
 
         return $output;
     }

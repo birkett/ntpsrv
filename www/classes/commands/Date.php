@@ -6,8 +6,11 @@ namespace NtpSrv\classes\commands;
 
 class Date extends AbstractCommand
 {
+    /**
+     * @inheritDoc
+     */
     public function __construct()
     {
-        parent::__construct('date', []);
+        parent::__construct('date');
     }
 }
