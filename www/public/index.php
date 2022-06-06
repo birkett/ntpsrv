@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace NtpSrv;
 
 use NtpSrv\classes\Autoloader;
+use NtpSrv\classes\commands\Uname;
 use NtpSrv\classes\Template;
 use NtpSrv\classes\commands\Date;
 use NtpSrv\classes\commands\Uptime;
@@ -18,6 +19,7 @@ $autoloader = new Autoloader([
 $autoloader->init();
 
 $template = new Template(__DIR__ . '/../templates/index.html.tpl', [
+    'uname' => (new Uname())->getOutput(),
     'uptime' => (new Uptime())->getOutput(),
     'date' => (new Date())->getOutput(),
 ]);
