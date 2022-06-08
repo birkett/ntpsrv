@@ -3,7 +3,7 @@
 BUILDROOT_VERSION=2022.02.2
 BUILDROOT_ARCHIVE_TYPE=xz
 
-# apt install bc ncurses-dev
+# apt install bc ncurses-dev libssl-dev
 
 if [ ! -d "build" ]
 then
