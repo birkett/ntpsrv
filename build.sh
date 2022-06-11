@@ -47,6 +47,9 @@ cp ../../build/rpi-firmware-*/boot/bootcode.bin .
 cp ../../build/rpi-firmware-*/boot/fixup_cd.dat .
 cp ../../build/rpi-firmware-*/boot/start_cd.elf .
 
+mkdir overlays
+cp ../../build/rpi-firmware-*/boot/overlays/pps-gpio.dtbo overlays/
+
 tar -cf ../bootfs.tar .
 
 dd if=/dev/zero of=../bootfs.vfat bs=64M count=1
