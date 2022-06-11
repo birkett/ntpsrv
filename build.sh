@@ -40,17 +40,17 @@ mkdir boot
 
 cd boot || exit
 
-sudo cp ../../../../../boot/* .
-sudo cp ../zImage kernel.img
-sudo cp ../../build/linux-"$LINUX_GIT_HASH"/arch/arm/boot/dts/"$TARGET_DTB" .
-sudo cp ../../build/rpi-firmware-*/boot/bootcode.bin .
-sudo cp ../../build/rpi-firmware-*/boot/fixup_cd.dat .
-sudo cp ../../build/rpi-firmware-*/boot/start_cd.elf .
+cp ../../../../../boot/* .
+cp ../zImage kernel.img
+cp ../../build/linux-"$LINUX_GIT_HASH"/arch/arm/boot/dts/"$TARGET_DTB" .
+cp ../../build/rpi-firmware-*/boot/bootcode.bin .
+cp ../../build/rpi-firmware-*/boot/fixup_cd.dat .
+cp ../../build/rpi-firmware-*/boot/start_cd.elf .
 
 tar -cf ../bootfs.tar .
 
 dd if=/dev/zero of=../bootfs.vfat bs=16M count=1
-sudo mkfs.vfat ../bootfs.vfat
+../../host/sbin/mkfs.vfat ../bootfs.vfat
 
 ../../host/bin/mcopy -i ../bootfs.vfat * ::
 
