@@ -49,8 +49,8 @@ cp ../../build/rpi-firmware-*/boot/start_cd.elf .
 
 tar -cf ../bootfs.tar .
 
-dd if=/dev/zero of=../bootfs.vfat bs=16M count=1
-../../host/sbin/mkfs.vfat ../bootfs.vfat
+dd if=/dev/zero of=../bootfs.vfat bs=64M count=1
+../../host/sbin/mkfs.vfat -F 32 ../bootfs.vfat
 
 ../../host/bin/mcopy -i ../bootfs.vfat * ::
 
