@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source versions.sh
+source scripts/versions.sh
 
 # apt install bc ncurses-dev libssl-dev
 
