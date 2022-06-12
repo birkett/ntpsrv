@@ -58,7 +58,7 @@ final class GpsPipe extends AbstractCommand
      */
     private function parseOutput(string $rawOutput): string
     {
-        $jsonMessages = explode("\n", $rawOutput);
+        $jsonMessages = explode(PHP_EOL, $rawOutput);
         // Reverse the array to get the newest messages first.
         $jsonMessages = array_reverse($jsonMessages);
         $output = [];
@@ -85,6 +85,6 @@ final class GpsPipe extends AbstractCommand
             return 'GPS not locked, no messages.';
         }
 
-        return implode("\n", $output);
+        return implode(PHP_EOL, $output);
     }
 }
