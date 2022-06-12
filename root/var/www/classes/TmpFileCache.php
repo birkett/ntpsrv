@@ -58,7 +58,11 @@ final class TmpFileCache implements CommandOutputCacheInterface
      */
     private function readTmpFile(string $key): string|bool
     {
-        return file_get_contents($this->getTmpFileName($key));
+        $fileName = $this->getTmpFileName($key);
+
+        return file_exists($fileName)
+            ? file_get_contents($fileName)
+            : false;
     }
 
     /**
