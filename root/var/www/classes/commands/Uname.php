@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace NtpSrv\classes\commands;
 
-class Uname extends AbstractCommand
+final class Uname extends AbstractCommand
 {
     /**
      * @inheritDoc

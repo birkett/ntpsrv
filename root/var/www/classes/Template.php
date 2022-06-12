@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace NtpSrv\classes;
 
-class Template
+final class Template
 {
     /**
      * @var string

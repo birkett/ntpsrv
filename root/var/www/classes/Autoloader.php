@@ -6,7 +6,7 @@ namespace NtpSrv\classes;
 
 use \RuntimeException;
 
-class Autoloader
+final class Autoloader
 {
     /**
      * List of namespaces this autoloader is registered for.

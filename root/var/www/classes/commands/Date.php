@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace NtpSrv\classes\commands;
 
-class Date extends AbstractCommand
+final class Date extends AbstractCommand
 {
     /**
      * @inheritDoc
