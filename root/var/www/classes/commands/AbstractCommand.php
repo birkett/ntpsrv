@@ -33,7 +33,7 @@ abstract class AbstractCommand implements ConsoleCommand
      */
     public function getOutput(): string
     {
-        return implode($this->runCommand());
+        return implode(PHP_EOL, $this->runCommand());
     }
 
     /**

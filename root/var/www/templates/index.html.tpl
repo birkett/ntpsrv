@@ -21,6 +21,9 @@
                     <td>{ date }</td>
                 </tr>
             </table>
+            <p>
+                { gpspipe }
+            </p>
         </div>
     </body>
 </html>
