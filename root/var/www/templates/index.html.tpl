@@ -7,26 +7,11 @@
     </head>
     <body>
         <div class="container">
-            <table>
-                <tr>
-                    <td>uname</td>
-                    <td>{ uname }</td>
-                </tr>
-                <tr>
-                    <td>uptime</td>
-                    <td>{ uptime }</td>
-                </tr>
-                <tr>
-                    <td>date</td>
-                    <td>{ date }</td>
-                </tr>
-            </table>
-            <p>
-                { gpspipe }
-            </p>
-            <pre>
-                { ntpq }
-            </pre>
+            <code>uname { uname }</code>
+            <code>uptime { uptime }</code>
+            <code>{ date }</code>
+            <code>{ gpspipe }</code>
+            <pre>{ ntpq }</pre>
         </div>
     </body>
 </html>
