@@ -24,6 +24,9 @@
             <p>
                 { gpspipe }
             </p>
+            <pre>
+                { ntpq }
+            </pre>
         </div>
     </body>
 </html>
