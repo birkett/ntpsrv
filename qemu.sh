@@ -8,6 +8,6 @@ qemu-system-arm \
   -m 1G \
   -serial stdio \
   -hda build/buildroot-"$BUILDROOT_VERSION"/output/images/rootfs.ext2 \
-  -append "console=ttyAMA0" \
+  -append "console=ttyAMA0 root=/dev/mmcblk1" \
   -dtb build/buildroot-"$BUILDROOT_VERSION"/output/build/linux-"$LINUX_GIT_HASH"/arch/arm/boot/dts/"$TARGET_DTB" \
   -kernel build/buildroot-"$BUILDROOT_VERSION"/output/images/zImage
