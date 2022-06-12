@@ -64,7 +64,7 @@ final class GpsPipe extends AbstractCommand
         $output = [];
 
         foreach ($jsonMessages as $jsonMessage) {
-            $messageArray = json_decode($jsonMessage, true, 3, JSON_THROW_ON_ERROR);
+            $messageArray = json_decode($jsonMessage, true, 10, JSON_THROW_ON_ERROR);
             $intermediateMessage = new IntermediateGpsPipeMessage($messageArray);
 
             if (
