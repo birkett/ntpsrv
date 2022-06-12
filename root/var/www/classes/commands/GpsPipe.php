@@ -8,10 +8,13 @@ use Exception;
 use NtpSrv\classes\dto\IntermediateGpsPipeMessage;
 use NtpSrv\classes\dto\PpsGpsPipeMessage;
 use NtpSrv\classes\dto\TpvGpsPipeMessage;
+use NtpSrv\interfaces\CommandOutputCacheInterface;
 use NtpSrv\interfaces\GpsPipeMessageInterface;
 
 final class GpsPipe extends AbstractCommand
 {
+    protected string $cacheTime = CommandOutputCacheInterface::CACHE_TIME_30_SECONDS;
+
     private const MESSAGE_CLASS_MAP = [
         GpsPipeMessageInterface::MESSAGE_TYPE_PPS => PpsGpsPipeMessage::class,
         GpsPipeMessageInterface::MESSAGE_TYPE_TPV => TpvGpsPipeMessage::class,
@@ -58,11 +61,7 @@ final class GpsPipe extends AbstractCommand
         $jsonMessages = explode("\n", $rawOutput);
         // Reverse the array to get the newest messages first.
         $jsonMessages = array_reverse($jsonMessages);
-
-        $output = [
-            'PPS' => '',
-            'TPV' => '',
-        ];
+        $output = [];
 
         foreach ($jsonMessages as $jsonMessage) {
             $messageArray = json_decode($jsonMessage, true, 3, JSON_THROW_ON_ERROR);

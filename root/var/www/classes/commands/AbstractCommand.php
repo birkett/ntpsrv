@@ -4,10 +4,22 @@ declare(strict_types=1);
 
 namespace NtpSrv\classes\commands;
 
+use NtpSrv\interfaces\CommandOutputCacheInterface;
+use NtpSrv\classes\TmpFileCache;
 use NtpSrv\interfaces\ConsoleCommand;
 
 abstract class AbstractCommand implements ConsoleCommand
 {
+    /**
+     * @var bool
+     */
+    protected bool $useOutputCache = true;
+
+    /**
+     * @var string
+     */
+    protected string $cacheTime = CommandOutputCacheInterface::DEFAULT_CACHE_TIME;
+
     /**
      * @var string
      */
@@ -19,6 +31,11 @@ abstract class AbstractCommand implements ConsoleCommand
     private array $arguments;
 
     /**
+     * @var CommandOutputCacheInterface
+     */
+    private CommandOutputCacheInterface $outputCache;
+
+    /**
      * @param string $command
      * @param string[] $arguments
      */
@@ -26,6 +43,7 @@ abstract class AbstractCommand implements ConsoleCommand
     {
         $this->command = $command;
         $this->arguments = $arguments;
+        $this->outputCache = new TmpFileCache();
     }
 
     /**
@@ -33,7 +51,21 @@ abstract class AbstractCommand implements ConsoleCommand
      */
     public function getOutput(): string
     {
-        return implode(PHP_EOL, $this->runCommand());
+        if ($this->useOutputCache) {
+            $content = $this->outputCache->get(static::class);
+
+            if ($content) {
+                return $content;
+            }
+        }
+
+        $result = implode(PHP_EOL, $this->runCommand());
+
+        if ($this->useOutputCache) {
+            $this->outputCache->set(static::class, $result, $this->cacheTime);
+        }
+
+        return $result;
     }
 
     /**
