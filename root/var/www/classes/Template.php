@@ -34,7 +34,7 @@ final class Template
         $template = file_get_contents($this->templateFile);
 
         foreach ($this->templateArgs as $arg => $value) {
-            $template = str_replace('{ ' . $arg . ' }', $value, $template);
+            $template = str_replace('{ ' . $arg . ' }', nl2br($value), $template);
         }
 
         return $template;
