@@ -1,1 +1,1 @@
-quiet
+root/dev/mmcblk0p2 quiet
