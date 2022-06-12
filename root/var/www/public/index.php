@@ -14,11 +14,7 @@ use NtpSrv\classes\commands\GpsPipe;
 
 require_once '../classes/Autoloader.php';
 
-$autoloader = new Autoloader([
-    'NtpSrv' => '../',
-]);
-
-$autoloader->init();
+Autoloader::init(['NtpSrv' => '../']);
 
 $template = new Template(__DIR__ . '/../templates/index.html.tpl', [
     'uname' => (new Uname())->getOutput(),

@@ -4,44 +4,23 @@ declare(strict_types=1);
 
 namespace NtpSrv\classes;
 
-use \RuntimeException;
+use RuntimeException;
 
 final class Autoloader
 {
-    /**
-     * List of namespaces this autoloader is registered for.
-     * These are stored as key value pairs, key being the namespace, value
-     * being the path to load from.
-     *
-     * @var array $registeredNamespaces
-     */
-    private array $registeredNamespaces;
-
-    /**
-     * Add a namespace to the list that this autoloader will be registered for.
-     *
-     * @param string[] $namespaces Namespace => Path key value pairs to register.
-     */
-    public function __construct(array $namespaces)
-    {
-        foreach ($namespaces as $namespace => $path) {
-            $this->registeredNamespaces[$namespace] = $path;
-        }
-    }
-
     /**
      * Autoloader for classes, controllers and models.
      *
      * @throws RuntimeException Standard exception if the class is not found.
      */
-    public function init(): void
+    public static function init(array $namespaces): void
     {
-        $autoLoadFn = function (string $class) {
+        $autoLoadFn = static function (string $class) use ($namespaces) {
             $found = false;
             $baseDir = '';
             $classLen = 0;
 
-            foreach ($this->registeredNamespaces as $prefix => $path) {
+            foreach ($namespaces as $prefix => $path) {
                 $len = strlen($prefix);
 
                 if (strncmp($prefix, $class, $len) === 0) {
