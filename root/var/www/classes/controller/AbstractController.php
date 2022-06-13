@@ -18,12 +18,9 @@ abstract class AbstractController implements ControllerInterface
      */
     private int $responseCode;
 
-    /**
-     * @param string $contentType
-     */
-    public function __construct(string $contentType = self::CONTENT_TYPE_HTML)
+    public function __construct()
     {
-        $this->contentType = $contentType;
+        $this->contentType = self::CONTENT_TYPE_HTML;
         $this->responseCode = self::RESPONSE_CODE_OK;
     }
 
@@ -33,6 +30,16 @@ abstract class AbstractController implements ControllerInterface
     public function getContentType(): string
     {
         return $this->contentType;
+    }
+
+    /**
+     * @param string $contentType
+     *
+     * @return void
+     */
+    public function setContentType(string $contentType): void
+    {
+        $this->contentType = $contentType;
     }
 
     /**

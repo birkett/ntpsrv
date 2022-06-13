@@ -20,6 +20,15 @@ interface ControllerInterface
     public function getContentType(): string;
 
     /**
+     * Set the response content type.
+     *
+     * @param string $contentType
+     *
+     * @return void
+     */
+    public function setContentType(string $contentType): void;
+
+    /**
      * Get the response code from this controller.
      *
      * @return int
