@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace NtpSrv\classes;
 
 use DateTimeImmutable;
-use NtpSrv\interfaces\CommandOutputCacheInterface;
+use NtpSrv\interfaces\OutputCacheInterface;
 
-final class TmpFileCache implements CommandOutputCacheInterface
+final class TmpFileCache implements OutputCacheInterface
 {
     private const KEY_ROOT = 'NTPSRV_CC_';
     private const TIMESTAMP_KET_SUFFIX = '_TIMESTAMP';

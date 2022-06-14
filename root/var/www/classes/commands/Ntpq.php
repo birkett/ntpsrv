@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace NtpSrv\classes\commands;
 
-use NtpSrv\interfaces\CommandOutputCacheInterface;
+use NtpSrv\interfaces\OutputCacheInterface;
 
 final class Ntpq extends AbstractCommand
 {
-    protected string $cacheTime = CommandOutputCacheInterface::CACHE_TIME_30_SECONDS;
+    protected string $cacheTime = OutputCacheInterface::CACHE_TIME_30_SECONDS;
 
     /**
      * @inheritDoc

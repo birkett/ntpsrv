@@ -8,12 +8,12 @@ use Exception;
 use NtpSrv\classes\dto\IntermediateGpsPipeMessage;
 use NtpSrv\classes\dto\PpsGpsPipeMessage;
 use NtpSrv\classes\dto\TpvGpsPipeMessage;
-use NtpSrv\interfaces\CommandOutputCacheInterface;
+use NtpSrv\interfaces\OutputCacheInterface;
 use NtpSrv\interfaces\GpsPipeMessageInterface;
 
 final class GpsPipe extends AbstractCommand
 {
-    protected string $cacheTime = CommandOutputCacheInterface::CACHE_TIME_30_SECONDS;
+    protected string $cacheTime = OutputCacheInterface::CACHE_TIME_30_SECONDS;
 
     private const MESSAGE_CLASS_MAP = [
         GpsPipeMessageInterface::MESSAGE_TYPE_PPS => PpsGpsPipeMessage::class,

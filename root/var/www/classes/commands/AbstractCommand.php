@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace NtpSrv\classes\commands;
 
-use NtpSrv\interfaces\CommandOutputCacheInterface;
+use NtpSrv\interfaces\OutputCacheInterface;
 use NtpSrv\classes\TmpFileCache;
 use NtpSrv\interfaces\ConsoleCommand;
 
@@ -18,7 +18,7 @@ abstract class AbstractCommand implements ConsoleCommand
     /**
      * @var string
      */
-    protected string $cacheTime = CommandOutputCacheInterface::DEFAULT_CACHE_TIME;
+    protected string $cacheTime = OutputCacheInterface::DEFAULT_CACHE_TIME;
 
     /**
      * @var string
@@ -31,9 +31,9 @@ abstract class AbstractCommand implements ConsoleCommand
     private array $arguments;
 
     /**
-     * @var CommandOutputCacheInterface
+     * @var OutputCacheInterface
      */
-    private CommandOutputCacheInterface $outputCache;
+    private OutputCacheInterface $outputCache;
 
     /**
      * @param string $command

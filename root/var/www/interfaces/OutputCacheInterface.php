@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace NtpSrv\interfaces;
 
-interface CommandOutputCacheInterface
+interface OutputCacheInterface
 {
     public const DEFAULT_CACHE_TIME = self::CACHE_TIME_1_SECOND;
 
