@@ -13,8 +13,6 @@ use NtpSrv\interfaces\GpsPipeMessageInterface;
 
 final class GpsPipe extends AbstractCommand
 {
-    protected string $cacheTime = OutputCacheInterface::CACHE_TIME_30_SECONDS;
-
     private const MESSAGE_CLASS_MAP = [
         GpsPipeMessageInterface::MESSAGE_TYPE_PPS => PpsGpsPipeMessage::class,
         GpsPipeMessageInterface::MESSAGE_TYPE_TPV => TpvGpsPipeMessage::class,
@@ -33,6 +31,8 @@ final class GpsPipe extends AbstractCommand
                 '--seconds 3'
             ]
         );
+
+        $this->setCacheTime(OutputCacheInterface::CACHE_TIME_30_SECONDS);
     }
 
     /**

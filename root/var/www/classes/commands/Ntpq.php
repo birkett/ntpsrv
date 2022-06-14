@@ -8,13 +8,13 @@ use NtpSrv\interfaces\OutputCacheInterface;
 
 final class Ntpq extends AbstractCommand
 {
-    protected string $cacheTime = OutputCacheInterface::CACHE_TIME_30_SECONDS;
-
     /**
      * @inheritDoc
      */
     public function __construct()
     {
         parent::__construct('ntpq', ['-p']);
+
+        $this->setCacheTime(OutputCacheInterface::CACHE_TIME_30_SECONDS);
     }
 }

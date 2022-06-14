@@ -20,8 +20,8 @@ final class HealthCheckController extends AbstractController
     {
         parent::__construct();
 
-        $this->outputCache = new TmpFileCache();
-        $this->cacheTime = OutputCacheInterface::CACHE_TIME_10_SECONDS;
+        $this->setOutputCache(new TmpFileCache());
+        $this->setCacheTime(OutputCacheInterface::CACHE_TIME_10_SECONDS);
     }
 
     /**

@@ -11,12 +11,12 @@ trait CachedOutputTrait
     /**
      * @var string
      */
-    protected string $cacheTime = OutputCacheInterface::DEFAULT_CACHE_TIME;
+    private string $cacheTime = OutputCacheInterface::DEFAULT_CACHE_TIME;
 
     /**
      * @var OutputCacheInterface|null
      */
-    protected ?OutputCacheInterface $outputCache;
+    private ?OutputCacheInterface $outputCache;
 
     /**
      * @var bool
@@ -24,11 +24,31 @@ trait CachedOutputTrait
     private bool $useOutputCache = true;
 
     /**
+     * @param OutputCacheInterface $outputCache
+     *
+     * @return void
+     */
+    protected function setOutputCache(OutputCacheInterface $outputCache): void
+    {
+        $this->outputCache = $outputCache;
+    }
+
+    /**
+     * @param string $cacheTime
+     *
+     * @return void
+     */
+    protected function setCacheTime(string $cacheTime): void
+    {
+        $this->cacheTime = $cacheTime;
+    }
+
+    /**
      * @param string $key
      *
      * @return string|null
      */
-    public function cacheGet(string $key): ?string
+    protected function cacheGet(string $key): ?string
     {
         return $this->useOutputCache && $this->outputCache instanceof OutputCacheInterface
             ? $this->outputCache->get($key)
@@ -41,7 +61,7 @@ trait CachedOutputTrait
      *
      * @return void
      */
-    public function cacheSet(string $key, string $value): void
+    protected function cacheSet(string $key, string $value): void
     {
         if ($this->useOutputCache && $this->outputCache instanceof OutputCacheInterface) {
             $this->outputCache->set($key, $value, $this->cacheTime);

@@ -30,7 +30,8 @@ abstract class AbstractCommand implements ConsoleCommand
     {
         $this->command = $command;
         $this->arguments = $arguments;
-        $this->outputCache = new TmpFileCache();
+
+        $this->setOutputCache(new TmpFileCache());
     }
 
     /**
