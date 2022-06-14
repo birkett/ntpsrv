@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace NtpSrv\classes\controller;
 
+use NtpSrv\classes\TmpFileCache;
+use NtpSrv\interfaces\OutputCacheInterface;
+use NtpSrv\traits\CachedOutputTrait;
 use stdClass;
 use NtpSrv\classes\metrics\Cpu;
 use NtpSrv\classes\metrics\Disk;
@@ -11,6 +14,16 @@ use NtpSrv\classes\metrics\Mem;
 
 final class HealthCheckController extends AbstractController
 {
+    use CachedOutputTrait;
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->outputCache = new TmpFileCache();
+        $this->cacheTime = OutputCacheInterface::CACHE_TIME_10_SECONDS;
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -25,6 +38,12 @@ final class HealthCheckController extends AbstractController
     public function get(): string
     {
         $this->setContentType(self::CONTENT_TYPE_JSON);
+
+        $content = $this->cacheGet(self::class);
+
+        if ($content) {
+            return $content;
+        }
 
         $cpu = new Cpu();
         $disk = new Disk();
@@ -47,6 +66,10 @@ final class HealthCheckController extends AbstractController
         $metrics->mem->total = $mem->total();
         $metrics->mem->percent = $mem->percent();
 
-        return json_encode($metrics, JSON_THROW_ON_ERROR);
+        $result = json_encode($metrics, JSON_THROW_ON_ERROR);
+
+        $this->cacheSet(self::class, $result);
+
+        return $result;
     }
 }

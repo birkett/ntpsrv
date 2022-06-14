@@ -9,6 +9,7 @@ interface OutputCacheInterface
     public const DEFAULT_CACHE_TIME = self::CACHE_TIME_1_SECOND;
 
     public const CACHE_TIME_1_SECOND = '+1 second';
+    public const CACHE_TIME_10_SECONDS = '+10 second';
     public const CACHE_TIME_30_SECONDS = '+30 second';
 
     /**
