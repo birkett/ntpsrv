@@ -9,8 +9,6 @@ use NtpSrv\interfaces\ControllerInterface;
 
 final class Router
 {
-    private const METHOD_GET = 'GET';
-
     /**
      * @var ControllerInterface[]
      */
@@ -35,24 +33,25 @@ final class Router
     public function handleRequest(string $method, string $path): string
     {
         $matchedController = null;
+        $methodName = strtolower($method);
 
         foreach ($this->controllers as $controller) {
-            if ($controller->getRoute() === $path) {
+            if (
+                $controller->getRoute() === $path
+                && method_exists($controller, $methodName)
+            ) {
                 $matchedController = $controller;
 
                 break;
             }
         }
 
-        if ($method !== self::METHOD_GET) {
-            $matchedController = null;
-        }
-
         if (!$matchedController instanceof ControllerInterface) {
             $matchedController = new NotFoundController();
+            $content = $matchedController->get();
+        } else {
+            $content = $matchedController->{$methodName}();
         }
-
-        $content = $matchedController->get();
 
         $this->setResponseCode($matchedController->getResponseCode());
         $this->setContentType($matchedController->getContentType());

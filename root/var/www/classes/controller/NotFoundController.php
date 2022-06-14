@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace NtpSrv\classes\controller;
 
-class NotFoundController extends AbstractController
+final class NotFoundController extends AbstractController
 {
     /**
      * {@inheritDoc}
