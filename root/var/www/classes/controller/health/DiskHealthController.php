@@ -27,6 +27,7 @@ final class DiskHealthController extends AbstractHealthController
         $this->metrics->disk->used = $disk->used();
         $this->metrics->disk->total = $disk->total();
         $this->metrics->disk->percent = $disk->percent();
+        $this->metrics->disk->device = $disk->getDevice();
 
         return parent::get();
     }
