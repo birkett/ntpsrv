@@ -11,6 +11,7 @@ interface OutputCacheInterface
     public const CACHE_TIME_1_SECOND = '+1 second';
     public const CACHE_TIME_10_SECONDS = '+10 second';
     public const CACHE_TIME_30_SECONDS = '+30 second';
+    public const CACHE_TIME_60_SECONDS = '+60 second';
 
     /**
      * @param string $key

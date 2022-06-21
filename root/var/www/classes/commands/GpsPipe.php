@@ -19,6 +19,11 @@ final class GpsPipe extends AbstractCommand
     ];
 
     /**
+     * @var bool
+     */
+    private bool $locked = false;
+
+    /**
      * @inheritDoc
      */
     public function __construct()
@@ -47,6 +52,14 @@ final class GpsPipe extends AbstractCommand
         } catch (Exception) {
             return 'Failed to fetch GPS data.';
         }
+    }
+
+    /**
+     * @return bool
+     */
+    public function isLocked(): bool
+    {
+        return $this->locked;
     }
 
     /**
@@ -84,6 +97,8 @@ final class GpsPipe extends AbstractCommand
         ) {
             return 'GPS not locked, no messages.';
         }
+
+        $this->locked = true;
 
         return implode(PHP_EOL, $output);
     }
